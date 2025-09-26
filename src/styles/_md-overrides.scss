@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+// Angular Material styles overrides
+@include mat.toolbar-overrides((
+  container-background-color: var(--mat-sys-primary),
+  container-text-color: var(--mat-sys-surface),
+));
+
+.mat-toolbar {
+  @include mat.icon-button-overrides((
+    icon-color: var(--mat-sys-surface)
+  ));
+}

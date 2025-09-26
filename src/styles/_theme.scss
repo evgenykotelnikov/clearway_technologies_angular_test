@@ -1,0 +1,55 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+// Define a custom typography configuration (optional, uses default if omitted)
+$typography: mat.m2-define-typography-config(
+  $font-family: 'Roboto, sans-serif'
+);
+
+// Include the typography-hierarchy mixin with your configuration
+$theme: (
+  color: (
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  typography: 'Roboto, sans-serif',
+  density: 0,
+);
+
+html {
+  @include mat.theme($theme);
+
+  @include mat.app-background();
+  @include mat.typography-hierarchy($typography);
+
+  // Reset typography margins
+  .mat-typography {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    .mat-headline-1,
+    .mat-headline-2,
+    .mat-headline-3,
+    .mat-headline-4,
+    .mat-headline-5,
+    .mat-headline-6,
+    .mat-subtitle-1,
+    .mat-subtitle-2,
+    .mat-body-1,
+    .mat-body-2,
+    .mat-caption,
+    .mat-button,
+    .mat-overline,
+    .mat-overline {
+      margin-bottom: 0;
+    }
+  }
+}
