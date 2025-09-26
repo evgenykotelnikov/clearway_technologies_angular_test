@@ -1,0 +1,17 @@
+<mat-toolbar class="toolbar">
+  <h1 class="toolbar__title">{{title()}}</h1>
+  <div class="toolbar__sizeControl">
+    <span class="mat-body-1">{{scale() * 100}}</span>
+    <button matIconButton>
+      <mat-icon>add</mat-icon>
+    </button>
+    <button matIconButton>
+      <mat-icon>remove</mat-icon>
+    </button>
+  </div>
+  <button matButton="elevated">Save</button>
+</mat-toolbar>
+
+@if (document(); as document) {
+  <app-document-viewer [document]="document" />
+}

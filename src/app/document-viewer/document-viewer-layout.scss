@@ -1,0 +1,22 @@
+@use '../../styles/variables';
+
+:host {
+  display: block;
+  padding-top: 64px;
+}
+
+.toolbar {
+  position: fixed;
+  top: 0;
+  gap: variables.$indent-3;
+
+  &__title {
+    flex: 1;
+  }
+
+  &__sizeControl {
+    display: flex;
+    gap: variables.$indent-1;
+    align-items: inherit;
+  }
+}
