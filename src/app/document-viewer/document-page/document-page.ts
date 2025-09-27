@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
-import { Page } from './viewable-document.interface';
-import { environment } from '../../environments/environment';
+import { Page } from '../viewable-document.interface';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-document-page',

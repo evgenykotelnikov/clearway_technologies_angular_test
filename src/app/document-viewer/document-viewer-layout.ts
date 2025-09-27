@@ -5,10 +5,10 @@ import { ActivatedRoute } from '@angular/router';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { DocumentLoaderService } from './document-loader.service';
-import { DocumentPage } from './document-page';
-import { ViewableDocument } from './viewable-document.interface';
 import { filter, map, switchMap } from 'rxjs';
+import { DocumentLoaderService } from './document-loader.service';
+import { DocumentPage } from './document-page/document-page';
+import { ViewableDocument } from './viewable-document.interface';
 
 @Component({
   selector: 'app-document-viewer-layout',
