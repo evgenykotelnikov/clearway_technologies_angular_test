@@ -36,6 +36,14 @@ export class DocumentViewerLayout {
     this.document = toSignal(document$);
   }
 
+  protected save() {
+    const document = this.document();
+    if (!document)
+      return;
+
+    this._documentLoader.save(document);
+  }
+
   @HostListener('document:keydown.+')
   protected onPlusKeyUp() {
     this.scaleDocument(0.01);
