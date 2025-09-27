@@ -3,7 +3,13 @@
     "pages": [
         {
             "number": 1,
-            "imageUrl": "pages/1.png"
+            "imageUrl": "pages/1.png",
+            "annotations": [{
+                "id": 1,
+                "x": 300,
+                "y": 200,
+                "text": "test annotation"
+            }]
         },
         {
             "number": 2,
