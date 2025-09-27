@@ -1,17 +1,23 @@
 <mat-toolbar class="toolbar">
-  <h1 class="toolbar__title">{{title()}}</h1>
+  <h1 class="toolbar__title">{{document()?.name}}</h1>
   <div class="toolbar__sizeControl">
-    <span class="mat-body-1">{{scale() * 100}}</span>
-    <button matIconButton>
+    <span class="mat-body-1">{{(scale() * 100) | number}}</span>
+    <button matIconButton (click)="scaleDocument(0.1)">
       <mat-icon>add</mat-icon>
     </button>
-    <button matIconButton>
+    <button matIconButton (click)="scaleDocument(-0.1)">
       <mat-icon>remove</mat-icon>
     </button>
   </div>
   <button matButton="elevated">Save</button>
 </mat-toolbar>
 
-@if (document(); as document) {
-  <app-document-viewer [document]="document" />
-}
+<div #documentContainer class="document__container">
+  <div class="document__viewer"
+       [style.transform]="`scale(${scale()})`"
+       [style.marginLeft]="`${documentElementOffset()}px`">
+    @for (page of document()?.pages; track page.number) {
+      <app-document-page [page]="page" />
+    }
+  </div>
+</div>

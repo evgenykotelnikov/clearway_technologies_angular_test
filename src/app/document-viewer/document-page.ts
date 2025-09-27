@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
-import { ViewableDocument } from './viewable-document.interface';
+import { Page } from './viewable-document.interface';
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-document-viewer',
+  selector: 'app-document-page',
   imports: [],
-  templateUrl: './document-viewer.html',
-  styleUrl: './document-viewer.scss',
+  templateUrl: './document-page.html',
+  styleUrl: './document-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DocumentViewer {
+export class DocumentPage {
 
-  readonly document = input.required<ViewableDocument>();
+  readonly page = input.required<Page>();
 
   protected readonly imageUrlPrefix = signal(environment.apiUrl);
 

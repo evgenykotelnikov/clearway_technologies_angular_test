@@ -1,10 +1,11 @@
 @use '../../styles/variables';
 
-.document {
-  &__container {
-    margin-top: variables.$indent-2;
-  }
+:host {
+  position: relative;
+  margin: variables.$indent-2 0;
+}
 
+.page {
   &__image {
     display: block;
     margin: 0 auto;
