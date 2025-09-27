@@ -1,13 +1,17 @@
 @use '../../../styles/variables';
 
 :host {
-  position: relative;
+  display: flex;
+  justify-content: center;
   margin: variables.$indent-2 0;
 }
 
 .page {
+  &__container {
+    position: relative;
+  }
+
   &__image {
     display: block;
-    margin: 0 auto;
   }
 }

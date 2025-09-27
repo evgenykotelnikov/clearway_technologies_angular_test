@@ -1,1 +1,10 @@
-<img [src]="imageUrlPrefix() + page().imageUrl" class="page__image" />
+<div #pageContainer class="page__container">
+  <img [src]="imageUrlPrefix() + page().imageUrl" class="page__image" />
+
+  @for (annotation of page().annotations; track annotation.id) {
+    <app-page-annotation [annotation]="annotation"
+                         [style.left]="`${annotation.x}px`"
+                         [style.top]="`${annotation.y}px`"
+                         (remove)="removeAnnotation(annotation)" />
+  }
+</div>

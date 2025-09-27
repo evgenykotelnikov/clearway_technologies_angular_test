@@ -6,4 +6,12 @@ export interface ViewableDocument {
 export interface Page {
   number: number;
   imageUrl: string;
+  annotations?: Annotation[];
+}
+
+export interface Annotation {
+  id: number;
+  x: number;
+  y: number;
+  text: string;
 }

@@ -1,0 +1,22 @@
+@use '../../../../styles/variables';
+
+:host {
+  position: absolute;
+  background: var(--mat-sys-tertiary-container);
+  padding: variables.$indent-3;
+}
+
+.annotation {
+  &__edit {
+    outline: none;
+  }
+
+  &__remove {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    cursor: pointer;
+    color: var(--mat-sys-tertiary);
+    caret-color: transparent;
+  }
+}

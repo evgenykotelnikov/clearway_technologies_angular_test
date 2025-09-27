@@ -37,16 +37,16 @@ export class DocumentViewerLayout {
   }
 
   @HostListener('document:keydown.+')
-  onPlusKeyUp() {
+  protected onPlusKeyUp() {
     this.scaleDocument(0.01);
   }
 
   @HostListener('document:keydown.-')
-  onMinusKeyUp() {
+  protected onMinusKeyUp() {
     this.scaleDocument(-0.01);
   }
 
-  scaleDocument(scaleDelta: number) {
+  protected scaleDocument(scaleDelta: number) {
     const prevScale = this.scale();
     const currScale = prevScale + scaleDelta;
     if (currScale < 0)

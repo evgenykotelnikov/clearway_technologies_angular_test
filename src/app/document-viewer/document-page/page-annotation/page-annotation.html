@@ -1,0 +1,5 @@
+<div class="annotation__edit"
+     contenteditable="true"
+     [(ngModel)]="annotation().text">
+</div>
+<mat-icon class="annotation__remove" (click)="remove.emit(annotation())">cancel</mat-icon>
