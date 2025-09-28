@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, model, signal, viewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { DragDirective } from '../../common/drag/drag.directive';
+import { DragDelta } from '../../common/drag/drag-delta.interface';
 import { Annotation, Page } from '../viewable-document.interface';
 import { PageAnnotation } from "./page-annotation/page-annotation";
 
 @Component({
   selector: 'app-document-page',
-  imports: [PageAnnotation],
+  imports: [DragDirective, PageAnnotation],
   templateUrl: './document-page.html',
   styleUrl: './document-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -18,8 +20,8 @@ export class DocumentPage {
 
   private readonly _pageContainer = viewChild.required<ElementRef<HTMLInputElement>>('pageContainer');
 
-  @HostListener('click', ['$event'])
-  protected addAnnotation(event: PointerEvent) {
+  @HostListener('dblclick', ['$event'])
+  protected addAnnotation(event: MouseEvent) {
     const currentAnnotations = this.page().annotations || [];
     const lastAnnotationId = currentAnnotations[currentAnnotations.length - 1]?.id || 0;
 
@@ -47,6 +49,11 @@ export class DocumentPage {
       page.annotations = (page.annotations || []).filter(a => a !== annotation);
       return page;
     });
+  }
+
+  protected updateAnnotationPosition(annotation: Annotation, delta: DragDelta) {
+    annotation.x += delta.x;
+    annotation.y += delta.y;
   }
 
 }

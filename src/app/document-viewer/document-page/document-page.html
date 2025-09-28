@@ -1,10 +1,12 @@
 <div #pageContainer class="page__container">
-  <img [src]="imageUrlPrefix() + page().imageUrl" class="page__image" />
+  <img [src]="imageUrlPrefix() + page().imageUrl" class="page__image" draggable="false" />
 
   @for (annotation of page().annotations; track annotation.id) {
     <app-page-annotation [annotation]="annotation"
                          [style.left]="`${annotation.x}px`"
                          [style.top]="`${annotation.y}px`"
+                         appDrag
+                         (dragEnd)="updateAnnotationPosition(annotation, $event)"
                          (remove)="removeAnnotation(annotation)" />
   }
 </div>

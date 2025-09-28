@@ -1,5 +1,11 @@
-<div class="annotation__edit"
+<pre class="annotation__edit"
      contenteditable="true"
+     appDragDisabled
      [(ngModel)]="annotation().text">
-</div>
-<mat-icon class="annotation__remove" (click)="remove.emit(annotation())">cancel</mat-icon>
+</pre>
+<mat-icon class="annotation__remove"
+          appDragDisabled
+          [preserveCursorStyle]="true"
+          (click)="remove.emit(annotation())">
+  cancel
+</mat-icon>
