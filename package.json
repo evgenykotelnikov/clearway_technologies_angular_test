@@ -30,6 +30,8 @@
     "@angular/material": "^20.2.5",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
+    "material-icons": "^1.13.14",
+    "roboto-fontface": "^0.10.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
