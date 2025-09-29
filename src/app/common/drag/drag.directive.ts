@@ -4,19 +4,21 @@ import { DragDelta } from './drag-delta.interface';
 @Directive({
   selector: '[appDrag]',
   host: {
-    '[style.cursor]': '"move"'
+    '[style.cursor]': '"move"',
+    '[attr.draggable]': '"false"'
   }
 })
 export class DragDirective implements AfterViewInit, OnDestroy {
 
   readonly dragEnd = output<DragDelta>();
 
-  private _removeEventListener: () => void = () => {};
+  private _removeMouseMoveEventListener: () => void = () => {};
   private _dragDisabledElements: NodeList | undefined = undefined;
   private readonly _dragDelta: DragDelta = {
     x: 0,
     y: 0
   };
+  private _dragStarted: boolean = false;
 
   constructor(private readonly _elementRef: ElementRef,
               private readonly _renderer: Renderer2) { }
@@ -27,17 +29,22 @@ export class DragDirective implements AfterViewInit, OnDestroy {
 
   @HostListener('mousedown', ['$event'])
   protected startDrag(event: MouseEvent) {
-    if (this.isDragDisabled(event.target as HTMLElement))
+    if (this._dragStarted || this.isDragDisabled(event.target as HTMLElement))
       return;
 
-    this._removeEventListener = this._renderer.listen('window', 'mousemove', this.move.bind(this));
+    this._dragStarted = true;
+    this._removeMouseMoveEventListener = this._renderer.listen('window', 'mousemove', this.move.bind(this));
   }
 
   @HostListener('window:mouseup')
   protected endDrag() {
-    this._removeEventListener();
+    if (!this._dragStarted)
+      return;
+    
+    this._removeMouseMoveEventListener();
 
     this.dragEnd.emit(this._dragDelta);
+    this._dragStarted = false;
     this.resetPosition();
   }
 
@@ -71,7 +78,7 @@ export class DragDirective implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._removeEventListener();
+    this._removeMouseMoveEventListener();
   }
 
 }
