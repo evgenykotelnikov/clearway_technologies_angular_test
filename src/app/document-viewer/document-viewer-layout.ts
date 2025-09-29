@@ -5,14 +5,16 @@ import { ActivatedRoute } from '@angular/router';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { MatProgressBar } from '@angular/material/progress-bar';
 import { filter, map, switchMap } from 'rxjs';
+import { indicateLoading } from '../utils/rxjs-operators.utils';
 import { DocumentLoaderService } from './document-loader.service';
 import { DocumentPage } from './document-page/document-page';
 import { ViewableDocument } from './viewable-document.interface';
 
 @Component({
   selector: 'app-document-viewer-layout',
-  imports: [MatToolbar, MatButton, MatIconButton, MatIcon, DecimalPipe, DocumentPage],
+  imports: [MatToolbar, MatButton, MatIconButton, MatIcon, MatProgressBar, DecimalPipe, DocumentPage],
   templateUrl: './document-viewer-layout.html',
   styleUrl: './document-viewer-layout.scss',
   providers: [DocumentLoaderService]
@@ -21,6 +23,7 @@ export class DocumentViewerLayout {
   protected readonly scale = signal(1);
   protected readonly documentElementOffset = signal(0);
   protected readonly document: Signal<ViewableDocument | undefined>;
+  protected readonly busy = signal<boolean>(true);
 
   private readonly _documentContainer = viewChild.required<ElementRef<HTMLInputElement>>('documentContainer');
 
@@ -30,7 +33,9 @@ export class DocumentViewerLayout {
     const document$ = this._activatedRoute.paramMap.pipe(
       map(params => params.get('documentId')),
       filter((documentId): documentId is string => !!documentId),
-      switchMap(documentId => this._documentLoader.load(documentId))
+      switchMap(documentId => this._documentLoader.load(documentId).pipe(
+        indicateLoading(this.busy)
+      ))
     );
     this.document = toSignal(document$);
   }

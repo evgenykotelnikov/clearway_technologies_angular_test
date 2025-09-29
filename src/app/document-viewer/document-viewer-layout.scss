@@ -7,6 +7,7 @@
 }
 
 .toolbar {
+  position: relative;
   flex: none;
   gap: variables.$indent-3;
   z-index: 1;
@@ -19,6 +20,12 @@
     display: flex;
     gap: variables.$indent-1;
     align-items: inherit;
+  }
+
+  &__progress {
+    position: absolute;
+    left: 0;
+    top: 100%;
   }
 }
 

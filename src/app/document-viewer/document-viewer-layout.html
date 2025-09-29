@@ -10,6 +10,10 @@
     </button>
   </div>
   <button matButton="elevated" (click)="save()">Save</button>
+
+  @if (busy()) {
+    <mat-progress-bar class="toolbar__progress" mode="indeterminate" />
+  }
 </mat-toolbar>
 
 <div #documentContainer class="document__container">
