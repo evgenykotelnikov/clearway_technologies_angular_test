@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostListener, input, output } from '@angular/core';
+import { Component, HostListener, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { ContenteditableDirective } from '../../../common/contenteditable.directive';
@@ -9,8 +9,7 @@ import { Annotation } from '../../viewable-document.interface';
   selector: 'app-page-annotation',
   imports: [FormsModule, MatIcon, ContenteditableDirective, DragDisabledDirective],
   templateUrl: './page-annotation.html',
-  styleUrl: './page-annotation.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './page-annotation.scss'
 })
 export class PageAnnotation {
 

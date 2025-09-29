@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, Signal, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Signal, signal, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DecimalPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -15,8 +15,7 @@ import { ViewableDocument } from './viewable-document.interface';
   imports: [MatToolbar, MatButton, MatIconButton, MatIcon, DecimalPipe, DocumentPage],
   templateUrl: './document-viewer-layout.html',
   styleUrl: './document-viewer-layout.scss',
-  providers: [DocumentLoaderService],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  providers: [DocumentLoaderService]
 })
 export class DocumentViewerLayout {
   protected readonly scale = signal(1);

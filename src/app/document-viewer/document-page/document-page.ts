@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, model, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, model, signal, viewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { DragDirective } from '../../common/drag/drag.directive';
 import { DragDelta } from '../../common/drag/drag-delta.interface';
@@ -9,8 +9,7 @@ import { PageAnnotation } from "./page-annotation/page-annotation";
   selector: 'app-document-page',
   imports: [DragDirective, PageAnnotation],
   templateUrl: './document-page.html',
-  styleUrl: './document-page.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './document-page.scss'
 })
 export class DocumentPage {
 
